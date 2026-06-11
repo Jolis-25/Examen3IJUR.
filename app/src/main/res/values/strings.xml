@@ -14,4 +14,11 @@
     <!-- Perfil -->
     <string name="tvw_profile_title">USUARIO</string>
     <string name="tvw_phone_label">TELÉFONO: 5536271829</string>
+
+    <string name="tvwSignUpTitle">Registro de Usuario</string>
+    <string name="ttSignUpName">Nombre de Usuario</string>
+    <string name="ttSignUpPassword">Contraseña</string>
+    <string name="btnSignUp">Registrarse</string>
+
+
 </resources>
