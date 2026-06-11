@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 
                 if (exists) {
 
-
+                    // GUARDAR ÚLTIMA CONEXIÓN
                     val prefs = getSharedPreferences("player_data", MODE_PRIVATE)
                     val editor = prefs.edit()
 

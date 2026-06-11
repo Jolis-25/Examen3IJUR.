@@ -26,6 +26,7 @@ class DatabaseHelper(context: Context) :
         onCreate(db)
     }
 
+    // INSERTAR USUARIO
     fun insertPlayer(username: String, password: String): Boolean {
 
         val db = this.writableDatabase
@@ -41,12 +42,29 @@ class DatabaseHelper(context: Context) :
         return result != -1L
     }
 
+    // VALIDAR LOGIN
     fun checkUser(username: String, password: String): Boolean {
 
         val db = this.readableDatabase
 
         val query = "SELECT * FROM players WHERE username = ? AND password = ?"
         val cursor = db.rawQuery(query, arrayOf(username, password))
+
+        val exists = cursor.count > 0
+
+        cursor.close()
+        db.close()
+
+        return exists
+    }
+
+    // VERIFICAR SI USUARIO EXISTE
+    fun userExists(username: String): Boolean {
+
+        val db = this.readableDatabase
+
+        val query = "SELECT * FROM players WHERE username = ?"
+        val cursor = db.rawQuery(query, arrayOf(username))
 
         val exists = cursor.count > 0
 

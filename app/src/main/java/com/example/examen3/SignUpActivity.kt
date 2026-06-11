@@ -26,15 +26,26 @@ class SignUpActivity : AppCompatActivity() {
             if (username.isEmpty() || password.isEmpty()) {
 
                 Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val exists = databaseHelper.userExists(username)
+
+            if (exists) {
+
+                Toast.makeText(this, "El usuario ya está registrado", Toast.LENGTH_SHORT).show()
 
             } else {
 
                 val success = databaseHelper.insertPlayer(username, password)
 
                 if (success) {
+
                     Toast.makeText(this, "Usuario registrado", Toast.LENGTH_SHORT).show()
                     finish()
+
                 } else {
+
                     Toast.makeText(this, "Error al registrar", Toast.LENGTH_SHORT).show()
                 }
             }
