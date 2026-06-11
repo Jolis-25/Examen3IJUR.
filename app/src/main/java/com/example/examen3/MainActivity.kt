@@ -12,6 +12,7 @@ import com.example.examen3.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var databaseHelper: DatabaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,30 +21,45 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        databaseHelper = DatabaseHelper(this)
+
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(
-                systemBars.left,
-                systemBars.top,
-                systemBars.right,
-                systemBars.bottom
-            )
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
+
         binding.btnLogin.setOnClickListener {
 
+            val username = binding.ttName.text.toString()
             val password = binding.ttPassword.text.toString()
 
-            if (password == "abc123") {
-                val intent = Intent(this, ProfileActivity::class.java)
-                startActivity(intent)
-            } else {
+            if (username.isEmpty() || password.isEmpty()) {
+
                 Toast.makeText(
                     this,
-                    "Contraseña incorrecta",
+                    "Completa todos los campos",
                     Toast.LENGTH_SHORT
                 ).show()
+
+            } else {
+
+                val exists = databaseHelper.checkUser(username, password)
+
+                if (exists) {
+
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    startActivity(intent)
+
+                } else {
+
+                    Toast.makeText(
+                        this,
+                        "Credenciales incorrectas",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         }
 

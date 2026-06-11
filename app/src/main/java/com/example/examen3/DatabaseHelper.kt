@@ -22,11 +22,11 @@ class DatabaseHelper(context: Context) :
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-
         db.execSQL("DROP TABLE IF EXISTS players")
         onCreate(db)
     }
 
+    // INSERTAR USUARIO
     fun insertPlayer(username: String, password: String): Boolean {
 
         val db = this.writableDatabase
@@ -40,5 +40,21 @@ class DatabaseHelper(context: Context) :
         db.close()
 
         return result != -1L
+    }
+
+    // VALIDAR USUARIO (LOGIN)
+    fun checkUser(username: String, password: String): Boolean {
+
+        val db = this.readableDatabase
+
+        val query = "SELECT * FROM players WHERE username = ? AND password = ?"
+        val cursor = db.rawQuery(query, arrayOf(username, password))
+
+        val exists = cursor.count > 0
+
+        cursor.close()
+        db.close()
+
+        return exists
     }
 }
