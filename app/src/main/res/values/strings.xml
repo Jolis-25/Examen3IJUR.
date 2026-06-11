@@ -1,18 +1,18 @@
 <resources>
     <string name="app_name">Mi Aplicación</string>
 
-    <!-- Pantalla de inicio de sesión -->
+
     <string name="tvwB">Bienvenid@</string>
     <string name="ttName">Nombre de Usuario</string>
     <string name="ttPassword">Contraseña</string>
     <string name="btnLogin">Iniciar sesión</string>
 
-    <!-- Registro -->
+
     <string name="tvwNoAccount">¿No tienes cuenta?</string>
     <string name="btnRegister">Registrar</string>
 
-    <!-- Perfil -->
-    <string name="tvw_profile_title">USUARIO</string>
+
+    <string name="tvw_profile_title">Jugador</string>
     <string name="tvw_phone_label">TELÉFONO: 5536271829</string>
 
     <string name="tvwSignUpTitle">Registro de Usuario</string>
