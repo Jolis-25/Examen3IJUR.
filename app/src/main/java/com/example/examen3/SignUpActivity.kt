@@ -32,12 +32,9 @@ class SignUpActivity : AppCompatActivity() {
                 val success = databaseHelper.insertPlayer(username, password)
 
                 if (success) {
-
                     Toast.makeText(this, "Usuario registrado", Toast.LENGTH_SHORT).show()
                     finish()
-
                 } else {
-
                     Toast.makeText(this, "Error al registrar", Toast.LENGTH_SHORT).show()
                 }
             }

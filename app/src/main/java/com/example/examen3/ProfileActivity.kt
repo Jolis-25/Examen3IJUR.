@@ -13,5 +13,11 @@ class ProfileActivity : AppCompatActivity() {
 
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val prefs = getSharedPreferences("player_data", MODE_PRIVATE)
+
+        val lastConnection = prefs.getString("last_connection", "Primera conexión")
+
+        binding.tvwLastConnection.text = "Última conexión: $lastConnection"
     }
 }

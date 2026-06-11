@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.examen3.databinding.ActivityMainBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,11 +39,7 @@ class MainActivity : AppCompatActivity() {
 
             if (username.isEmpty() || password.isEmpty()) {
 
-                Toast.makeText(
-                    this,
-                    "Completa todos los campos",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show()
 
             } else {
 
@@ -49,25 +47,30 @@ class MainActivity : AppCompatActivity() {
 
                 if (exists) {
 
-                    val intent = Intent(this, ProfileActivity::class.java)
-                    startActivity(intent)
+
+                    val prefs = getSharedPreferences("player_data", MODE_PRIVATE)
+                    val editor = prefs.edit()
+
+                    val currentDateTime = SimpleDateFormat(
+                        "dd/MM/yyyy HH:mm:ss",
+                        Locale.getDefault()
+                    ).format(Date())
+
+                    editor.putString("last_connection", currentDateTime)
+                    editor.apply()
+
+                    startActivity(Intent(this, ProfileActivity::class.java))
 
                 } else {
 
-                    Toast.makeText(
-                        this,
-                        "Credenciales incorrectas",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
                 }
             }
         }
 
 
         binding.btnRegister.setOnClickListener {
-
-            val intent = Intent(this, SignUpActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, SignUpActivity::class.java))
         }
     }
 }

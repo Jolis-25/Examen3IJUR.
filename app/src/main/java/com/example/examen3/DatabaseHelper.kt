@@ -26,7 +26,6 @@ class DatabaseHelper(context: Context) :
         onCreate(db)
     }
 
-    // INSERTAR USUARIO
     fun insertPlayer(username: String, password: String): Boolean {
 
         val db = this.writableDatabase
@@ -42,7 +41,6 @@ class DatabaseHelper(context: Context) :
         return result != -1L
     }
 
-    // VALIDAR USUARIO (LOGIN)
     fun checkUser(username: String, password: String): Boolean {
 
         val db = this.readableDatabase
