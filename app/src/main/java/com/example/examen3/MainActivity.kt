@@ -31,7 +31,6 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        // Botón iniciar sesión
         binding.btnLogin.setOnClickListener {
 
             val password = binding.ttPassword.text.toString()
@@ -48,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // Botón registrarse
+
         binding.btnRegister.setOnClickListener {
 
             val intent = Intent(this, SignUpActivity::class.java)
